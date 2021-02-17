@@ -5,6 +5,9 @@
 
 # Core Concepts (Cake Shop Analogy)
 
+NPM Packages:
+- [x] redux
+
 Cake Shop Analogy | Redux Concepts | Purpose 
 ------------ | ------------- | --------
 SHOP | store.js | Holds the state of application
@@ -48,3 +51,55 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer);
 
 ```
+
+# Middleware
+NPM Packages:
+- [x] redux-logger
+
+
+- extend redux with custom functions between dispatching an action and when it reduces the reducer
+- use middleware for logging, crash reporting, perform async tasks
+
+# Async Actions - fetching data from API to store in state
+
+## State
+
+``` javascript
+state = {
+  loading: true,
+  data: [],
+  error: "",
+}
+```
+
+loading: displays a loading spinner
+data: stores the data
+error: display error message to the user
+
+## Actions
+``` javascript
+ const FETCH_DATA_REQUEST = "FETCH_DATA_REQUEST"
+ const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS"
+ const FETCH_DATA_FAILURE = "FETCH_DATA_FAILURE"
+```
+- FETCH_DATA_REQUEST - fetch list of data
+- FETCH_DATA_SUCCESS - fetch is successful
+- FETCH_DATA_FAILURE - error fetching the data
+
+## Reducers (the different cases for Actions)
+``` javascript
+ case FETCH_DATA_REQUEST:
+    return {loading: true}
+ case FETCH_DATA_SUCCESS:
+   return {loading: false, users: ["data from API"]}
+ case FETCH_DATA_FAILURE:
+   return {loading: false, error: ["error from API]}
+```
+
+# Async action creators
+NPM Packages:
+- [x] axios - make api request 
+- [x] redux-thunk - define async action creators, middleware
+
+- make API call from jsonplaceholder
+- and return the data or error depending on request results
