@@ -1,4 +1,9 @@
-# Three Core Concepts (A cake shop)
+# [React-Redux Tutorial by Codevolution](https://www.youtube.com/playlist?list=PLC3y8-rFHvwheJHvseC3I0HuYI2f46oAK) 
+
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/9boMnm5X9ak/0.jpg)](https://www.youtube.com/playlist?list=PLC3y8-rFHvwheJHvseC3I0HuYI2f46oAK)
+
+# Core Concepts (Cake Shop Analogy)
 
 Cake Shop Analogy | Redux Concepts | Purpose 
 ------------ | ------------- | --------
