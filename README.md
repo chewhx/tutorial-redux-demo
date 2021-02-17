@@ -30,3 +30,21 @@ SHOPKEEPER | reducer.js | Execute the change of state based on action and update
 - allows state to be updated via `dispatch(action)`
 - registers listeners via `subscribe(listener)`
 - unregister listeners via function returned by `subscribe(listener)`
+
+# Multiple reducers
+Creating multiple reducers to simulate multiple shopkeepers handle different kinds of products or states.
+
+# Combining reducers
+- send all reducers to the store for execution
+
+```javascript
+const combineReducers = redux.combineReducers
+...
+const rootReducer = combineReducers({
+  cake: cakeReducer,
+  iceCream: iceCreamReducer,
+});
+
+const store = createStore(rootReducer);
+
+```

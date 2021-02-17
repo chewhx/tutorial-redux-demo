@@ -1,9 +1,11 @@
 const redux = require("redux");
-const createStore = redux.createStore ;
+const createStore = redux.createStore;
+const combineReducers = redux.combineReducers;
 
 // Constant
 
 const BUY_CAKE = "BUY_CAKE";
+const BUY_ICECREAM = "BUY_ICECREAM";
 
 // Action
 
@@ -21,19 +23,42 @@ function buyCake() {
   };
 }
 
+function buyIceCream() {
+  return {
+    type: BUY_ICECREAM,
+    info: "Buy one(1) ice-cream",
+  };
+}
+
 // Reducer
 // (previousState, action) => newState
 
-const initialState = {
+const initialCakeState = {
   numOfCakes: 10,
 };
 
-const reducer = (state = initialState, action) => {
+const initialIceCreamState = {
+  numOfIceCreams: 20,
+};
+
+const cakeReducer = (state = initialCakeState, action) => {
   switch (action.type) {
     case BUY_CAKE:
       return {
         ...state, // create a copy of state to retain the other values inside
         numOfCakes: state.numOfCakes - 1,
+      };
+    default:
+      return state;
+  }
+};
+
+const iceCreamReducer = (state = initialIceCreamState, action) => {
+  switch (action.type) {
+    case BUY_ICECREAM:
+      return {
+        ...state, // create a copy of state to retain the other values inside
+        numOfIceCreams: state.numOfIceCreams - 1,
       };
 
     default:
@@ -43,8 +68,13 @@ const reducer = (state = initialState, action) => {
 
 // Store
 
+const rootReducer = combineReducers({
+  cake: cakeReducer,
+  iceCream: iceCreamReducer,
+});
+
 // holds application state
-const store = createStore(reducer);
+const store = createStore(rootReducer);
 
 // allows access to state via `getState()`
 console.log("Initial state", store.getState());
@@ -59,4 +89,6 @@ const unsubscribe = store.subscribe(() =>
 store.dispatch(buyCake());
 store.dispatch(buyCake());
 store.dispatch(buyCake());
+store.dispatch(buyIceCream());
+store.dispatch(buyIceCream());
 unsubscribe();
